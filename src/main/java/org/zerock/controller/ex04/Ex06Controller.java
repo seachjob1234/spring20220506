@@ -22,7 +22,37 @@ public class Ex06Controller {
 		
 		return "myview02";
 	}
+	@RequestMapping("sub03")
+	public String method03() {
+
+		// prefix:/WEB-INF/views/
+		// suffix:.jsp
+		
+		// full view name : /WEB-INF/views/ex06/myview03.jsp
+		return "ex06/myview03";
+	}
 	
+	@RequestMapping("sub04")
+	public String method04() {
+		// 요청 경로와 view(jsp)의 경로가 같은 경우
+		// null로 리턴 가능
+		
+		// 요청경로:/ex06/sub04
+		// 뷰이름: /WEB-INF/views/ex06/sub04.jsp
+		return null;
+	}
+	
+	@RequestMapping("sub05")
+	public void method05() {
+		// 요청 경로와 view(jsp)의 경로가 같은 경우
+		// void로 리턴 타입 작성 가능
+		
+		// 요청경로: /ex06/sub05
+		// 뷰이름: /WEB-INF/views/ex06/sub05.jsp
+	}
+
+
+
 	
 	
 }
