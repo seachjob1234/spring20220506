@@ -14,17 +14,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>${messege} </h1>
-	<h1>새 직원 입력</h1>
-	<form action="${pageContext.request.contextPath }/ex14/sub06" method="post">
-	퍼스트네임명 : <input type ="text" name="firstName" value = "Sson h.h."/><br />
-	라스트네임명:  <input type ="text" name="lastName" value = "wingfoward"/><br />
-	사진: <input type ="text" name="photo" value = "seoul gangnam"/><br />
-	노트: <textarea name="notes" id="" cols="30" rows="10">US PRESIDEONT</textarea><br />
-	날짜 :<input type ="date" name= "birthDate" value="1999-01-22"/><br /> 
+<h1>직원목록</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<td>ID</td>
+			<td>FIRST NAME</td>
+			<td>LAST NAME</td>
+			<td>BIRTH</td>
+			<td>PHOTO</td>
+			<td>NOTES</td>
+		</tr>
+	</thead>
+	<tbody>
 	
-	<button>등록</button>
 	
-	</form>
+	<c:forEach items ="${employees }" var="emp">
+	<tr>
+	<td>${emp.id }</td>
+	<td>${emp.firstName }</td>
+	<td>${emp.lastName }</td>
+	<td>${emp.birthDate }</td>
+	<td>${emp.photo }</td>
+	<td>${emp.notes }</td>
+	</tr>
+	</c:forEach>
+	</tbody>
+</table>
 </body>
 </html>

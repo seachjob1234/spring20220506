@@ -14,16 +14,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>${messege} </h1>
-	<h1>새 직원 입력</h1>
-	<form action="${pageContext.request.contextPath }/ex14/sub06" method="post">
-	퍼스트네임명 : <input type ="text" name="firstName" value = "Sson h.h."/><br />
-	라스트네임명:  <input type ="text" name="lastName" value = "wingfoward"/><br />
-	사진: <input type ="text" name="photo" value = "seoul gangnam"/><br />
-	노트: <textarea name="notes" id="" cols="30" rows="10">US PRESIDEONT</textarea><br />
-	날짜 :<input type ="date" name= "birthDate" value="1999-01-22"/><br /> 
+<h1>${board.id }번 게시물</h1>
+
+<c:url value="/ex15/board/modify" var ="modifyLink">
+
+</c:url>
+
+<form action="${modifyLink }" method="post">
+<input type="hidden" name="id" value="${board.id }" />
 	
-	<button>등록</button>
+	제목 : <input type="text" value="${board.title }" name="title"  /> <br />
+	
+	본문 : <textarea cols="30" rows="10" name= "body"  >${board.body }</textarea> <br />
+	
+	작성일시 : <input type="datetime-local" value="${board.inserted }" readonly /> <br />
+	
+	<button>수정</button>
 	
 	</form>
 </body>

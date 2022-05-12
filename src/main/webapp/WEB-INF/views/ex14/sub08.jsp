@@ -14,17 +14,39 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>${messege} </h1>
-	<h1>새 직원 입력</h1>
-	<form action="${pageContext.request.contextPath }/ex14/sub06" method="post">
-	퍼스트네임명 : <input type ="text" name="firstName" value = "Sson h.h."/><br />
-	라스트네임명:  <input type ="text" name="lastName" value = "wingfoward"/><br />
-	사진: <input type ="text" name="photo" value = "seoul gangnam"/><br />
-	노트: <textarea name="notes" id="" cols="30" rows="10">US PRESIDEONT</textarea><br />
-	날짜 :<input type ="date" name= "birthDate" value="1999-01-22"/><br /> 
+<title>Insert title here</title>
+</head>
+<body>
+<h1>회원목록</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<td>ID</td>
+			<td>CUSTOMERNAME</td>
+			<td>POSTALCODE</td>
+			<td>CITY</td>
+			<td>COUNTRY</td>
+			<td>ADDRESS</td>
+			<td>CONTACT</td>
+		</tr>
+	</thead>
+	<tbody>
 	
-	<button>등록</button>
 	
-	</form>
+	<c:forEach items ="${customers }" var="cus">
+	<tr>
+	<td>${cus.id }</td>
+	<td>${cus.customerName }</td>
+	<td>${cus.postalCode }</td>
+	<td>${cus.city }</td>
+	<td>${cus.country }</td>
+	<td>${cus.address }</td>
+	<td>${cus.contactName }</td>
+	</tr>
+
+	
+	</c:forEach>
+	</tbody>
+</table>
 </body>
 </html>
