@@ -17,91 +17,94 @@ import org.zerock.service.ex03.Ex06Service;
 @Controller
 @RequestMapping("ex15")
 public class Ex15Controller {
-	
+
 	@Autowired
 	private Ex05Service service;
-	
+
 	@Autowired
 	private Ex06Service replyService;
 
 	@RequestMapping("sub01")
 	public String method01(int id, Model model) {
 		String name = service.getCustomerNameById(id);
-		
+
 		model.addAttribute("name", name);
-		
+
 		return "/ex14/sub01";
 	}
-	
+
 	@RequestMapping("sub02")
 	public String method02(int id, Model model) {
 		String name = service.getEmployeeFirstNameById(id);
-		model.addAttribute("employeeName",name);
+		model.addAttribute("employeeName", name);
 		return "/ex14/sub02";
 	}
+
 	// /ex15/board/list
-		@RequestMapping("board/list")
-		public void listBoard(Model model) {
-			
-			List<BoardDto> list = service.listBoard();
-			model.addAttribute("boardList", list);
-			
-			System.out.println(list.size());
-			
-		}
-	
-		@GetMapping("board/{id}")
-		public String getBoard(@PathVariable("id") int id, Model model) {
-			System.out.println(id);	
-			
-			// 서비스일 시켜서 id에 해당하는 게시물 select
-		BoardDto dto =	service.getBoard(id);
-		
+	@RequestMapping("board/list")
+	public void listBoard(Model model) {
+
+		List<BoardDto> list = service.listBoard();
+		model.addAttribute("boardList", list);
+
+		System.out.println(list.size());
+
+	}
+
+	@GetMapping("board/{id}")
+	public String getBoard(@PathVariable("id") int id, Model model) {
+		System.out.println(id);
+
+		// 서비스일 시켜서 id에 해당하는 게시물 select
+		BoardDto dto = service.getBoard(id);
+
 		List<ReplyDto> replyList = replyService.listReplyByBoardId(id);
-			// 모델에 넣고
-			model.addAttribute("board",dto);
-			model.addAttribute("replyList",replyList);
-			// /WEB-INF/views/board/get.jsp로 포워드
-			return "/ex15/board/get";
-			
+		// 모델에 넣고
+		model.addAttribute("board", dto);
+		model.addAttribute("replyList", replyList);
+		// /WEB-INF/views/board/get.jsp로 포워드
+		return "/ex15/board/get";
+
+	}
+
+	@PostMapping("board/modify")
+	public String modifyBoard(BoardDto board) {
+		boolean success = service.updateBoard(board);
+		if (success) {
+
+		} else {
+
 		}
-		@PostMapping("board/modify")
-		public String modifyBoard(BoardDto board) {
-			boolean success = service.updateBoard(board);
-			if(success) {
-				
-			}else {
-				
-			}
-			return "redirect:/ex15/board/" + board.getId();
+		return "redirect:/ex15/board/" + board.getId();
+	}
+
+	@PostMapping("/board/remove")
+	public String removeBoard(int id) {
+		boolean success = service.removeBoardById(id);
+		if (success) {
+
+		} else {
+
 		}
-		@PostMapping("/board/remove")	
-		public String removeBoard(int id) {
-			boolean success = service.removeBoardById(id);
-			if(success) {
-				
-			}else {
-				
-			}
-			return "redirect:/ex15/board/list";
+		return "redirect:/ex15/board/list";
+	}
+
+	@GetMapping("board/write")
+	public void writeBoard() {
+
+	}
+
+	@PostMapping("board/write")
+	public String writeBoardProcess(BoardDto board) {
+		boolean success = service.addBoard(board);
+		if (success) {
+
+		} else {
+
 		}
-		@GetMapping("board/write")
-		public void writeBoard() {
-			
-		}
-		@PostMapping("board/write")
-		public String writeBoardProcess(BoardDto board) {
-			boolean success = service.addBoard(board);
-			if(success) {
-				
-			}else {
-				
-			}
-			
-			
-			return "redirect:/ex15/board/" +board.getId();
-			
-		}
-	
-		
+
+		return "redirect:/ex15/board/" + board.getId();
+
+	}
+
 }

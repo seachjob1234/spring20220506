@@ -5,40 +5,44 @@
 <mapper namespace="org.zerock.mapper.ex03.Ex04Mapper">
 
 	<insert id="insertReply">
-	INSERT INTO Reply (board_id, content, inserted) 
-	VALUES (#{boardId}, #{content}, #{inserted} )
-	
+		INSERT INTO Reply (board_id, content, inserted)
+		VALUES (#{boardId}, #{content}, #{inserted} )
+
 	</insert>
-	
-	<select id="selectReplyByBoardId" resultType="org.zerock.domain.ex02.ReplyDto">
-	
-	SELECT id id,
+
+	<select id="selectReplyByBoardId"
+		resultType="org.zerock.domain.ex02.ReplyDto">
+
+		SELECT id id,
 		board_id boardId,
 		content content,
-		inserted inserted
-	FROM Reply
-	WHERE board_id = #{boardId}
-	ORDER BY id 
-	
+		inserted
+		inserted
+		FROM Reply
+		WHERE board_id = #{boardId}
+		ORDER BY id
+
 	</select>
-	
+
 	<delete id="deleteReplyById">
 		DELETE FROM Reply
 		WHERE id = #{id }
 	</delete>
-	<update id = "updateReply">
-	UPDATE Reply
-	SET content = #{content}
-	WHERE id = #{id}
 	
 	
 	
+	
+	
+	<update id="updateReply">
+		UPDATE Reply
+		SET content = #{content}
+		WHERE id = #{id}
 	</update>
 	<delete id="deleteReplyByBoard">
-	DELETE FROM Reply
-	WHERE board_id=#{board.id}
-	
+		DELETE FROM Reply
+		WHERE board_id=#{board.id}
+
 	</delete>
-	
-	
+
+
 </mapper>
